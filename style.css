@@ -12,3 +12,23 @@
     border: 1px solid black;
     height: 200px;
 }
+#one,
+#two,
+#three{
+    border-top: none;
+}
+#one,
+#four,
+#seven{
+    border-left: none;
+}
+#seven,
+#eight,
+#nine{
+    border-bottom: none;
+}
+#three,
+#six,
+#nine{
+    border-right: none;
+}
