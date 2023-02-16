@@ -1,4 +1,4 @@
-#one,
+/* #one,
 #two,
 #three{
     border-top: none;
@@ -17,8 +17,10 @@
 #six,
 #nine{
     border-right: none;
-}
+} */
 .board{
+    
+    
     display: grid;
     grid-template-columns: repeat(3, 200px);
     grid-template-rows: repeat(3,200px);
@@ -34,4 +36,4 @@
 }
 .cell:hover{
     background-color: rgb(234, 234, 234);
-}
+} 
