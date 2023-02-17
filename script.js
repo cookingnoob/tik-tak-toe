@@ -26,19 +26,37 @@ const Gameboard = (() => {
 const displayController = (() => { 
 })();
 
-const Player = (checker) => {
-    const chooseChecker = document.getElementsByClassName('.chooseChecker');
-    const playerX = createElementWithClass('div', 'playerX');
-    const playerO = createElementWithClass('div', 'playerO')
 
-    function createElementWithClass(elementType, className){
-        let element = document.createElement(elementType);
-        element.classList.add(className);
-        return element;
-    }
+//son dos botones
+//se elige picando uno 
+const Player = (name) => {
+    const playerSelection = document.querySelector('.playerSelection');
+    const choosePlayer = document.createElement('div');
+    choosePlayer.classList.add('playerBtn');
+    choosePlayer.textContent = name;
+    playerSelection.appendChild(choosePlayer);
+
+
+  const sayName = () => `my name is ${name}`
+  
+  return{
+    sayName
+  }
+   
 }
 
-//jugador
-        //tiene un X o O 
-        //cada click pasa ese elemento a la casilla
-        //no puede haber dos iguales
+const playerX = Player('X')
+playerX.sayName()
+
+const playerO = Player('O')
+
+
+
+            // const playerX = createElementWithClass('div', 'playerX');
+    // const playerO = createElementWithClass('div', 'playerO')
+
+    // function createElementWithClass(elementType, className){
+    //     let element = document.createElement(elementType);
+    //     element.classList.add(className);
+    //     return element;
+    // }
