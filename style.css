@@ -37,6 +37,11 @@
 .cell:hover{
     background-color: rgb(234, 234, 234);
 } 
+.playerSelection{
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    gap: 20px;
+}
 .playerBtn{
     height: 50px;
     width: 100px;
