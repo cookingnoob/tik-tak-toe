@@ -31,7 +31,7 @@ const Gameboard = (() => {
             if(cell.textContent != ''){
                 return
             } else { 
-            cell.textContent = playerX.sayName()
+            cell.textContent = playerValue
             }
         })
     }
@@ -70,20 +70,23 @@ const Player = (name) => {
     playerSelection.appendChild(choosePlayer);
 
 //exporta el valor del jugador
-    const sayName = () => ` ${name}`
-  
+    
+    const prueba = function(){
+        playerValue = name;
+        console.log(playerValue)
+    };
+    const click = ()=> choosePlayer.addEventListener('click', prueba);
   
   return{
-    sayName
-    
+    click
   }
 
 }
 const playerX = Player('X')
-playerX.sayName()
+playerX.click()
 
 const playerO = Player('O')
-playerO.sayName()
+playerO.click()
 
 
 
