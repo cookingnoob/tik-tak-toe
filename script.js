@@ -1,87 +1,84 @@
-//crear objeto cell - tieneun indicador numerico (creado por el loop) y una variable sin definir
-//usar el loop para crear 9 casillas
-//manda los objetos a un array
-//acepta un valor que es dado por el player y va a la variable sin definir
-//renderea en pantalla ese valor
-//el jugador inicia y despues va la computadora (o un humano)
-//la computadora hace un loop sobre el array para escoger un numero randon
-//X va primero y luego va O
-//saca el valor de las casillas
-//exportar el valor de las casillas para que un externo defina el resultado del match
 
 const Gameboard = (() => {
+    let gameBoard = [];
+    const seeArray = () => firstCell = gameBoard[0];
     //renders board
-    let gameBoard = []
-    const board = createElementWithClass ('div', 'board');
+    const board = document.createElement('div');
+    board.classList.add('board')
     document.body.appendChild(board);
 
-    //creates enough cells for a 3x3 board (9 cells)
-    for (let i = 0; i <=8; i++){
-        let cell = createElementWithClass ('div', 'cell');
-        board.append(cell);
-        gameBoard.push(cell)
+
+    const Cell = () => {
+        //DOM manipulation 
+        const cellElement = document.createElement('div');
+        cellElement.classList.add('cell');
+        board.appendChild(cellElement);
+
+
     }
-    
+    //creates multiple cells
+    // for (let i = 0; i <=8; i++){
+    //     let cell = createElementWithClass ('div', 'cell');
+    //     board.append(cell);
+    //     gameBoard.push(cell);
+        
+    // }
+
+
+    // function createElementWithClass(elementType, className){
+    //     let element = document.createElement(elementType);
+    //     element.classList.add(className);
+    //     return element
+    // }
     //
+
+    //click a cell to pass the palayer value
     const cells = document.querySelectorAll('.cell');
-    const click = cells.forEach(cell => chooseCell(cell));
+    const clickCell = cells.forEach(cell => chooseCell(cell));
 
     function chooseCell(cell){
         cell.addEventListener('click', function(){
             if(cell.textContent != ''){
                 return
             } else { 
+            value = playerValue
             cell.textContent = playerValue
             }
         })
     }
-    //ya crea un elemento con clase para el DOM
-    //falta que agregue elementos de objeto como un indicador y un valor sin definir
-    function createElementWithClass(elementType, className){
-        let element = document.createElement(elementType);
-        element.classList.add(className);
-        return element;
-    }
 
     return{
-        click 
+        clickCell, 
+        seeArray
     }
 
 })();
+Gameboard.seeArray()
 
-//va a tomar los valores de la casilla para las reglas del juego
 
 const displayController = (() => { 
+    //va a tomar los valores de la casilla para las reglas del juego
+    console.log(firstCell)
 })();
 
 
-//son dos botones
-//cada uno tiene un valor diferente
-//se elige que valor vas a exportar al tablero picando su respectivo boton
-//
-
 const Player = (name) => {
-    //creates buttons
+    //DOM manipulation 
     const choosePlayer = document.createElement('div');
     choosePlayer.classList.add('playerBtn');
     choosePlayer.textContent = name;
-
     const playerSelection = document.querySelector('.playerSelection');
     playerSelection.appendChild(choosePlayer);
 
-//exporta el valor del jugador
-    
-    const prueba = function(){
-        playerValue = name;
-        console.log(playerValue)
-    };
-    const click = ()=> choosePlayer.addEventListener('click', prueba);
-  
-  return{
-    click
-  }
+    //stores the player value in a variable to send to the board
+    const click = ()=> choosePlayer.addEventListener('click', value);
+    const value = () => playerValue = name;
 
+    return{
+    click
+    }
 }
+
 const playerX = Player('X')
 playerX.click()
 
