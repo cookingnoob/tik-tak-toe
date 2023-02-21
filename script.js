@@ -1,7 +1,7 @@
 
 const Gameboard = (() => {
     let gameBoard = [];
-    const seeArray = () => firstCell = gameBoard[0];
+    
     //renders board
     const board = document.createElement('div');
     board.classList.add('board')
@@ -9,20 +9,26 @@ const Gameboard = (() => {
 
    
     const Cell = (identifier) => {
-        //DOM manipulation 
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
         board.appendChild(cellElement);
-        return{cellElement, identifier}
+        return{cellElement, identifier, value : ``}
     }
+
     let cellsLoop = {}
     for (let i = 0; i < 9; i++){
         cellsLoop[`cell${i}`] =  Cell(i);
         gameBoard.push(cellsLoop[`cell${i}`]);
     }
-
-        console.log(gameBoard)
-
+   
+    gameBoard.forEach(cell => {
+        cell.cellElement.addEventListener('click', function(){
+            cell.value = playerValue;
+            console.log(cell);
+            console.log(gameBoard)
+        })
+    });
+    
 
     //click a cell to pass the palayer value
     const cells = document.querySelectorAll('.cell');
@@ -33,24 +39,25 @@ const Gameboard = (() => {
             if(cell.textContent != ''){
                 return
             } else { 
-            value = playerValue
-            cell.textContent = playerValue
+            cell.value = playerValue;
+            cell.textContent = playerValue;
+            
             }
         })
     }
 
     return{
         clickCell, 
-        seeArray
+      
     }
 
 })();
-Gameboard.seeArray()
+
 
 
 const displayController = (() => { 
     //va a tomar los valores de la casilla para las reglas del juego
-    console.log(firstCell)
+    
 })();
 
 
