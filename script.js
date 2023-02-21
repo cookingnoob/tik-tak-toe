@@ -23,31 +23,17 @@ const Gameboard = (() => {
    
     gameBoard.forEach(cell => {
         cell.cellElement.addEventListener('click', function(){
-            cell.value = playerValue;
+            cell.value = playerValue
             console.log(cell);
             console.log(gameBoard)
         })
     });
     
 
-    //click a cell to pass the palayer value
-    const cells = document.querySelectorAll('.cell');
-    const clickCell = cells.forEach(cell => chooseCell(cell));
-
-    function chooseCell(cell){
-        cell.addEventListener('click', function(){
-            if(cell.textContent != ''){
-                return
-            } else { 
-            cell.value = playerValue;
-            cell.textContent = playerValue;
-            
-            }
-        })
-    }
+   
 
     return{
-        clickCell, 
+       
       
     }
 
@@ -89,4 +75,18 @@ playerO.click()
 
 
         // const board = document.querySelector('.board');
-    
+     //click a cell to pass the palayer value
+    //  const cells = document.querySelectorAll('.cell');
+    //  const clickCell = cells.forEach(cell => chooseCell(cell));
+ 
+    //  function chooseCell(cell){
+    //      cell.addEventListener('click', function(){
+    //          if(cell.textContent != ''){
+    //              return
+    //          } else { 
+    //          cell.value = playerValue;
+    //          cell.textContent = playerValue;
+             
+    //          }
+    //      })
+    //  }
