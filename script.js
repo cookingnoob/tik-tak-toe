@@ -7,30 +7,22 @@ const Gameboard = (() => {
     board.classList.add('board')
     document.body.appendChild(board);
 
-
-    const Cell = () => {
+   
+    const Cell = (identifier) => {
         //DOM manipulation 
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
         board.appendChild(cellElement);
-
-
+        return{cellElement, identifier}
     }
-    //creates multiple cells
-    // for (let i = 0; i <=8; i++){
-    //     let cell = createElementWithClass ('div', 'cell');
-    //     board.append(cell);
-    //     gameBoard.push(cell);
-        
-    // }
+    let cellsLoop = {}
+    for (let i = 0; i < 9; i++){
+        cellsLoop[`cell${i}`] =  Cell(i);
+        gameBoard.push(cellsLoop[`cell${i}`]);
+    }
 
+        console.log(gameBoard)
 
-    // function createElementWithClass(elementType, className){
-    //     let element = document.createElement(elementType);
-    //     element.classList.add(className);
-    //     return element
-    // }
-    //
 
     //click a cell to pass the palayer value
     const cells = document.querySelectorAll('.cell');

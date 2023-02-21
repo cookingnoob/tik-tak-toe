@@ -18,9 +18,7 @@
 #nine{
     border-right: none;
 } */
-.board{
-    
-    
+.board{    
     display: grid;
     grid-template-columns: repeat(3, 200px);
     grid-template-rows: repeat(3,200px);
@@ -33,6 +31,7 @@
     justify-content: center;
     border: 1px solid black;
     height: 200px;
+    
 }
 .cell:hover{
     background-color: rgb(234, 234, 234);
