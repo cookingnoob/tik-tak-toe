@@ -12,7 +12,7 @@ const Gameboard = (() => {
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
         board.appendChild(cellElement);
-        return{cellElement, identifier, value : `X`}
+        return{cellElement, identifier, value : ``}
     }
     //creates cells with dynamic naming
     let cellsLoop = {}
@@ -37,13 +37,34 @@ const Gameboard = (() => {
     gameBoard.forEach(cell => {
         cell.cellElement.addEventListener('click', function(){
             cell.value = playerValue;
-            
+            checkWinner ()
         })
     });
-    if (gameBoard[0].value + gameBoard[1].value + gameBoard[2].value == 'XXX'){
-        console.log('X wins')
-    };
+    //necesito que se active despues no de inmediato
+    //celdas que declaran victoria inmediata 2, 5, 8
+    // no funciona en primer columna, segunda, tercera
+    function checkWinner (){
+        if (gameBoard[0].value = gameBoard[1].value = gameBoard[2].value){
+        console.log(`${gameBoard[0].value} wins primer fila`)
+        } else if (gameBoard[3].value = gameBoard[4].value = gameBoard[5].value){
+            console.log(`${gameBoard[3].value} wins segunda fila`)
+        }else if (gameBoard[6].value = gameBoard[7].value = gameBoard[8].value){
+            console.log(`${gameBoard[6].value} wins tercer fila`)
+
+        }else if (gameBoard[0].value = gameBoard[3].value = gameBoard[6].value){
+            console.log(`${gameBoard[0].value} wins primer columna`)
+        }else if (gameBoard[1].value = gameBoard[4].value = gameBoard[7].value){
+            console.log(`${gameBoard[1].value} wins segunda columna`)
+        }else if (gameBoard[2].value = gameBoard[5].value = gameBoard[8].value){
+            console.log(`${gameBoard[2].value} wins tercer columna`)
+        }
         
+        else if (gameBoard[0].value = gameBoard[4].value = gameBoard[8].value){
+            console.log(`${gameBoard[3].value} wins primer diagonal`)
+        }else if (gameBoard[6].value = gameBoard[4].value = gameBoard[2].value){
+            console.log(`${gameBoard[2].value} wins segunda diagonal`)
+        }
+    }
     return{}
 
 })();
