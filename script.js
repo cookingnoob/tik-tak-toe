@@ -12,7 +12,7 @@ const Gameboard = (() => {
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
         board.appendChild(cellElement);
-        return{cellElement, identifier, value : ``}
+        return{cellElement, identifier, value : `X`}
     }
     //creates cells with dynamic naming
     let cellsLoop = {}
@@ -37,11 +37,13 @@ const Gameboard = (() => {
     gameBoard.forEach(cell => {
         cell.cellElement.addEventListener('click', function(){
             cell.value = playerValue;
-            console.log(gameBoard[0].value + gameBoard[1].value + gameBoard[2].value);
             
         })
     });
-    
+    if (gameBoard[0].value + gameBoard[1].value + gameBoard[2].value == 'XXX'){
+        console.log('X wins')
+    };
+        
     return{}
 
 })();
