@@ -17,8 +17,8 @@ const Gameboard = (() => {
     //creates cells with dynamic naming
     let cellsLoop = {}
     for (let i = 0; i < 9; i++){
-        cellsLoop[`cell${i}`] =  Cell(i);
-        gameBoard.push(cellsLoop[`cell${i}`]);
+        cellsLoop[i] =  Cell(i);
+        gameBoard.push(cellsLoop[i]);
     }
     
     //select a cell to add the player checker as text content
@@ -37,34 +37,41 @@ const Gameboard = (() => {
     gameBoard.forEach(cell => {
         cell.cellElement.addEventListener('click', function(){
             cell.value = playerValue;
-            checkWinner ()
+            botTurn()
         })
     });
+    const botTurn = () => {
+        const randomNumber = Math.floor(Math.random() * 9);
+        gameBoard[randomNumber].value = 'O';
+        cellsLoop[randomNumber].cellElement.textContent = 'O'
+        console.log(gameBoard[randomNumber])
+    }
+    
     //necesito que se active despues no de inmediato
     //celdas que declaran victoria inmediata 2, 5, 8
-    // no funciona en primer columna, segunda, tercera
-    function checkWinner (){
-        if (gameBoard[0].value = gameBoard[1].value = gameBoard[2].value){
-        console.log(`${gameBoard[0].value} wins primer fila`)
-        } else if (gameBoard[3].value = gameBoard[4].value = gameBoard[5].value){
-            console.log(`${gameBoard[3].value} wins segunda fila`)
-        }else if (gameBoard[6].value = gameBoard[7].value = gameBoard[8].value){
-            console.log(`${gameBoard[6].value} wins tercer fila`)
+    // no funciona en primer columna, segunda, tercera, ni diagonales
+    // function checkWinner (){
+    //     if (gameBoard[0].value = gameBoard[1].value = gameBoard[2].value){
+    //     console.log(`${gameBoard[0].value} wins primer fila`)
+    //     } else if (gameBoard[3].value = gameBoard[4].value = gameBoard[5].value){
+    //         console.log(`${gameBoard[3].value} wins segunda fila`)
+    //     }else if (gameBoard[6].value = gameBoard[7].value = gameBoard[8].value){
+    //         console.log(`${gameBoard[6].value} wins tercer fila`)
 
-        }else if (gameBoard[0].value = gameBoard[3].value = gameBoard[6].value){
-            console.log(`${gameBoard[0].value} wins primer columna`)
-        }else if (gameBoard[1].value = gameBoard[4].value = gameBoard[7].value){
-            console.log(`${gameBoard[1].value} wins segunda columna`)
-        }else if (gameBoard[2].value = gameBoard[5].value = gameBoard[8].value){
-            console.log(`${gameBoard[2].value} wins tercer columna`)
-        }
+    //     }else if (gameBoard[0].value = gameBoard[3].value = gameBoard[6].value){
+    //         console.log(`${gameBoard[0].value} wins primer columna`)
+    //     }else if (gameBoard[1].value = gameBoard[4].value = gameBoard[7].value){
+    //         console.log(`${gameBoard[1].value} wins segunda columna`)
+    //     }else if (gameBoard[2].value = gameBoard[5].value = gameBoard[8].value){
+    //         console.log(`${gameBoard[2].value} wins tercer columna`)
+    //     }
         
-        else if (gameBoard[0].value = gameBoard[4].value = gameBoard[8].value){
-            console.log(`${gameBoard[3].value} wins primer diagonal`)
-        }else if (gameBoard[6].value = gameBoard[4].value = gameBoard[2].value){
-            console.log(`${gameBoard[2].value} wins segunda diagonal`)
-        }
-    }
+    //     else if (gameBoard[0].value = gameBoard[4].value = gameBoard[8].value){
+    //         console.log(`${gameBoard[3].value} wins primer diagonal`)
+    //     }else if (gameBoard[6].value = gameBoard[4].value = gameBoard[2].value){
+    //         console.log(`${gameBoard[2].value} wins segunda diagonal`)
+    //     }
+    // }
     return{}
 
 })();
