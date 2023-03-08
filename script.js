@@ -13,17 +13,18 @@ const Gameboard = (() => {
         cellElement.classList.add('cell');
         board.appendChild(cellElement);
         return{cellElement, identifier, value : ``}
-    }
+    };
+
     //creates cells with dynamic naming
-    let cellsLoop = {}
     for (let i = 0; i < 9; i++){
-        cellsLoop[i] =  Cell(i);
-        gameBoard.push(cellsLoop[i]);
+        gameBoard[i] =  Cell(i);
     }
     
     //select a cell to add the player checker as text content
     const cells = document.querySelectorAll('.cell');
-    const clickCell = cells.forEach(cell => addText(cell));
+
+    const clickCellElement = () => cells.forEach(cell => addText(cell));
+
     function addText(cell){
          cell.addEventListener('click', function(){
              if(cell.textContent != ''){
@@ -32,55 +33,40 @@ const Gameboard = (() => {
              cell.textContent = playerValue; 
              }
          })
-     }
+     };
+
     //add the value of the checker to the value of the cell object value : X
     gameBoard.forEach(cell => {
         cell.cellElement.addEventListener('click', function(){
             cell.value = playerValue;
-            botTurn()
+            botTurn( )
         })
     });
+
     const botTurn = () => {
+        //que el bot escoja una celda que no esta seleccionada
+        // filtra las celdas que ya estan seleccionadas
+        // un loop filter
+        // separar las casillas que por el valor de value vacio/lleno
+        // escoge un numero al asar del 0 a lo largo del array
+       
+
         const randomNumber = Math.floor(Math.random() * 9);
         gameBoard[randomNumber].value = 'O';
-        cellsLoop[randomNumber].cellElement.textContent = 'O'
-        console.log(gameBoard[randomNumber])
+        gameBoard[randomNumber].cellElement.textContent = 'O'
     }
     
-    //necesito que se active despues no de inmediato
-    //celdas que declaran victoria inmediata 2, 5, 8
-    // no funciona en primer columna, segunda, tercera, ni diagonales
-    // function checkWinner (){
-    //     if (gameBoard[0].value = gameBoard[1].value = gameBoard[2].value){
-    //     console.log(`${gameBoard[0].value} wins primer fila`)
-    //     } else if (gameBoard[3].value = gameBoard[4].value = gameBoard[5].value){
-    //         console.log(`${gameBoard[3].value} wins segunda fila`)
-    //     }else if (gameBoard[6].value = gameBoard[7].value = gameBoard[8].value){
-    //         console.log(`${gameBoard[6].value} wins tercer fila`)
+   const seeArray = () => console.log(gameBoard);
 
-    //     }else if (gameBoard[0].value = gameBoard[3].value = gameBoard[6].value){
-    //         console.log(`${gameBoard[0].value} wins primer columna`)
-    //     }else if (gameBoard[1].value = gameBoard[4].value = gameBoard[7].value){
-    //         console.log(`${gameBoard[1].value} wins segunda columna`)
-    //     }else if (gameBoard[2].value = gameBoard[5].value = gameBoard[8].value){
-    //         console.log(`${gameBoard[2].value} wins tercer columna`)
-    //     }
-        
-    //     else if (gameBoard[0].value = gameBoard[4].value = gameBoard[8].value){
-    //         console.log(`${gameBoard[3].value} wins primer diagonal`)
-    //     }else if (gameBoard[6].value = gameBoard[4].value = gameBoard[2].value){
-    //         console.log(`${gameBoard[2].value} wins segunda diagonal`)
-    //     }
-    // }
-    return{}
+    return{seeArray, clickCellElement}
 
 })();
 
 
-
 const displayController = (() => { 
     //va a tomar los valores de la casilla para las reglas del juego
-    
+    Gameboard.seeArray();
+    Gameboard.clickCellElement('hola');
 })();
 
 
@@ -93,6 +79,8 @@ const Player = (name) => {
     playerSelection.appendChild(choosePlayer);
 
     //stores the player value in a variable to send to the board
+            // playerValue es el boton que picas, botValue es el que sobro
+            //se deberia definir en el 
     const click = ()=> choosePlayer.addEventListener('click', value);
     const value = () => playerValue = name;
 
@@ -106,3 +94,4 @@ playerX.click()
 
 const playerO = Player('O')
 playerO.click()
+
